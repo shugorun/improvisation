@@ -10,8 +10,12 @@
 
 ## バージョン一覧
 
-| ID   | 対象（プロンプト / スキーマ / 検索 等） | 場所 / 切替方法 | status | メモ |
-| ---- | --------------------------------------- | --------------- | ------ | ---- |
-| なし |                                         |                 |        |      |
+| ID   | 対象（予測モデル） | 場所 / 切替方法 | status | メモ |
+| ---- | ------------------ | --------------- | ------ | ---- |
+| M-freq | Frequency（全体の L/R 比で多い側を予測） | `mvp/src/oracle.ts` `predictFrequency` / UI の Model ボタン | candidate | 遷移の偏りを捉えず、human-like には無力（≈50%） |
+| M-mk1 | Markov-1（直前 1 手から予測） | 同上 `predictByContext(_,1)` | candidate | 過交替バイアスを直接捉える。最も高精度 |
+| M-ng3 | N-gram backoff order=3（Aaronson） | 同上 `predictNgram`（`NGRAM_ORDER=3`） | active | UI 既定。長文脈→短文脈にバックオフ。Markov-1 と同等の精度で、より一般化に強い |
+
+status: `active`（現用） / `candidate`（比較中） / `retired`（不要・参照用に残置）
 
 status: `active`（現用） / `candidate`（比較中） / `retired`（不要・参照用に残置）

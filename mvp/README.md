@@ -9,3 +9,24 @@
 - 実験・フィードバック・問題の生ログは `docs/mvp-design/`。確定したコンテンツと学び（活かす / 捨てる）は `docs/progress/` と `docs/app-design/` へ昇格。
 - ここは**製品・コンテンツの検証**。純粋な**技術検証スパイク**は `poc/` へ（mvp/ と分ける）。
 - P2 のゲート（→P3）は `docs/03-ROADMAP.md`。
+
+---
+
+## Oracle MVP の動かし方
+
+中核体験「← / → を"ランダムに"押すあなたを Oracle が押下前に当て続ける」を確認するためのプロトタイプ。
+
+```bash
+npm install
+npm run dev      # Vite dev server → 表示 URL を開く
+```
+
+操作: キーボード `←` / `→`、またはボタンをタップ。下の Model ボタンで予測モデル（Frequency / Markov-1 / N-gram）を切替（履歴は保持して比較できる）。
+
+アルゴリズム検証（任意）:
+
+```bash
+node sim.ts      # Node 24+。human-like 入力で各モデルの的中率を表示（random=50%）
+```
+
+スタック: Vite + React 19 + TypeScript。状態は素の useState のみ。lint/format/test は MVP では省略（手動確認を緑とみなす）。
