@@ -13,15 +13,15 @@
 
 | 領域 | 採用 | status | ADR | 根拠 |
 |---|---|---|---|---|
-| アプリ種別 | 未設定 | 📝 draft | | |
-| 言語 / ランタイム | 未設定 | 📝 draft | | |
-| フロントエンド / 主要フレームワーク | 未設定 | 📝 draft | | |
-| バックエンド | 未設定 | 📝 draft | | |
-| データベース | 未設定 | 📝 draft | | |
-| 認証 | 未設定 | 📝 draft | | |
-| ホスティング | 未設定 | 📝 draft | | |
-| 監視 | 未設定 | 📝 draft | | |
-| テスト | 未設定 | 📝 draft | | |
+| アプリ種別 | Web SPA（完全クライアント・静的配信） | 🔍 reviewed | 0001 | 体験が純クライアントで完結。拡散も Web リンクが最速 |
+| 言語 / ランタイム | TypeScript（strict）/ ビルドは Node | 🔍 reviewed | 0001 | ユーザ指定。型で予測ロジックの回帰を防ぐ |
+| フロントエンド / 主要フレームワーク | React 19 + Vite 6 | 🔍 reviewed | 0001 | 指定の React。Vite は最小構成で速い。状態は useReducer + 自前 hook |
+| バックエンド | なし | 🔍 reviewed | 0001 | クライアントで完結。運用負荷ゼロ |
+| データベース | なし（localStorage のみ） | 🔍 reviewed | 0001 | ベストスコア・累計の端末内保存で足りる |
+| 認証 | なし | 🔍 reviewed | 0001 | アカウント不要の体験。非スコープ |
+| ホスティング | 静的ホスティング（GitHub Pages / Netlify / Vercel いずれも可） | 🔍 reviewed | 0001 | 無料・簡単。配信先は初版で固定しない（引き返せる） |
+| 監視 | なし（初版） | 🔍 reviewed | 0001 | 個人開発。必要なら後日 lightweight analytics |
+| テスト | Vitest（unit）+ tsc strict + ESLint + Prettier | 🔍 reviewed | 0001 | 予測ロジックの振る舞いを unit で固定 |
 
 ## ディレクトリ方針
 
@@ -34,18 +34,20 @@ app/   P5 の本実装。0 から書く。mvp/・poc/ を参照しない。
 docs/  設計・進捗・意思決定ログ。
 ```
 
-本実装内のレイヤ・ディレクトリ詳細はスタック確定後（P3-P5）に下記を具体化する。
+本実装(P3 確定)のディレクトリ構造:
 
 ```text
 app/
-  app/        UI / Screens
-  features/   Application / Use cases
-  domain/     Models
-  infra/      API, DB, Storage
-  shared/
+  src/
+    domain/      予測モデル（ngram-backoff / markov1 / frequency）・スコアリング・型。純粋・副作用なし
+    features/    ゲーム状態（useReducer + useOracleGame hook）。domain を組み合わせる
+    ui/          画面・コンポーネント（Pads, Stats, AccuracyChart, Insight, ShareCard, Explainer, Settings）
+    infra/       localStorage 永続化・PNG エクスポート（Canvas）。副作用を隔離
+    shared/      小さなユーティリティ・定数
+    main.tsx, App.tsx
 ```
 
-テストの配置は言語・スタックの慣習に従って P3 で決める（コロケーション or `app/tests/` 等）。本実装(`app/`)のテストは回帰スイートとして残す。`mvp/` のテストは使い捨てで本実装に引き継がない（詳細は `06-VALIDATION.md`「テストの置き場所と再利用」）。
+テストはコロケーション（`*.test.ts` を対象の隣）。domain の振る舞いテストを回帰スイートとして残す。`mvp/` のテストは使い捨てで本実装に引き継がない（詳細は `06-VALIDATION.md`「テストの置き場所と再利用」）。
 
 ## レイヤ方針
 
@@ -61,8 +63,9 @@ UI / Screens -> Application / Use cases -> Domain / Models -> Infrastructure / A
 
 | ADR | 内容 |
 |---|---|
-| 未設定 | |
+| [0001](decisions/0001-stack-client-only-react-spa.md) | 本実装スタック: クライアントのみ React+Vite SPA / 永続化 localStorage / 静的配信 / Vitest |
 
 ## 未確定事項
 
-- 技術スタック / データ永続化 / 認証の有無 / デプロイ先 / テスト方針
+- デプロイ先の最終固定（初版は未固定でよい・引き返せる）。
+- n-gram 既定 order（P5 実装時に実測で 4 or 5 に決める）。

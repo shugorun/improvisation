@@ -13,7 +13,7 @@ Architecture Decision Records。1 決定 = 1 ファイル。既存 ADR を大き
 
 | # | タイトル | status | 関連 |
 |---|---|---|---|
-| なし | | | |
+| [0001](0001-stack-client-only-react-spa.md) | 本実装スタック — クライアントのみ React + Vite SPA | Accepted | app-design/technical.md, 04-ARCHITECTURE.md |
 
 ## ADR候補（未起票）
 

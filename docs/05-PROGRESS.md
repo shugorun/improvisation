@@ -4,38 +4,41 @@
 
 ## 現在のフェーズ
 
-**P2 完了 → P3（app-design / スタック pin）。** 作るアプリ = **Oracle**（あなたの次の一手を読み当て「人はランダムになれない」を体験させる Web アプリ）。中核体験は MVP で実証済（human-like 入力で Oracle が 64% 的中、random=50%）。
+**P3 完了 → P4（機能仕様）。** 作るアプリ = **Oracle**（あなたの次の一手を読み当て「人はランダムになれない」を体験させる Web アプリ）。本実装スタックは pin 済み（クライアントのみ React+Vite SPA / ADR 0001）。
 
 ## フェーズ進行
 
 - [x] P0 ボイラープレート初期化
 - [x] P1 アイデア選定（Oracle に決定）
 - [x] P2 MVP（`mvp/` で中核体験を実証）
-- [ ] P3 app-design（詳細設計）
+- [x] P3 app-design（スコープ確定・スタック pin）
 - [ ] P4 機能仕様
 - [ ] P5 本実装（`app/` / 0 から）
 - [ ] P6 リリース準備
 
 各フェーズの移行ゲートは `03-ROADMAP.md`。**現フェーズのゲートが全チェックになるまで次へ進まない。**
 
-## 現フェーズのゲート（P3 → P4）
+## 現フェーズのゲート（P4 → P5）
 
-- [ ] `app-design/overview.md` に確定スコープ（作る / 作らない）
-- [ ] P2 を活かす機能を app-design に列挙
-- [ ] 本実装のアプリ種別・言語・スタックを 0 から確定し `04-ARCHITECTURE.md` のスタック表を pin（`🔍 reviewed`）
-- [ ] pin に伴う一方通行決定をユーザ確認済
+- [ ] 主要機能ごとに `docs/specs/<feature>/spec.md`
+- [ ] 各 spec に受け入れ条件（`06-VALIDATION.md`）
+- [ ] spec が含む一方通行決定をユーザ確認済（`🔍 reviewed`）
 
 ## 進行中
 
-- P3 app-design に着手。MVP の学び（ngram backoff を主モデル / 中核体験の手触り）を活かし、本実装のスコープとスタックを 0 から確定する。
+- P4 機能仕様に着手。app-design のセクション（コアゲーム / 統計・チャート / Insight / 共有 / 説明 / 設定）を機能 spec に落とす。
 
 ## 次にやること
 
-1. `docs/app-design/overview.md`（スコープ）/ `mechanics.md`（予測ロジック）/ `technical.md`（スタック候補）を詰める。
-2. `04-ARCHITECTURE.md` のスタック表を確定 → pin。
-3. P4 で機能 spec を書き、P5 で `app/` に 0 から本実装。
+1. `docs/specs/` に主要機能の spec と受け入れ条件を書く。
+2. P5 で `app/` に 0 から本実装（domain→features→ui→infra）。型/lint/unit/build を緑に。
 
 ## レビュー待ち
+
+### 本実装スタックの pin（事後確認・目安 3 分）
+- 対象: `04-ARCHITECTURE.md` スタック表 / [ADR 0001](decisions/0001-stack-client-only-react-spa.md)
+- なぜ載せるか: スタック pin は本来一方通行決定でユーザ確認対象。ただし種別・言語は実質ユーザ指定（React+TS）、残りは「クライアントのみ静的配信」という低リスク・引き返せる構成（サーバ追加は将来も可能）。ユーザの「自動で進めて」委任に従い Claude 判定で pin した。違和感あれば ADR 0001 を見直す。
+- 一方通行性: 低（サーバ/DB は後から追加可能）。
 
 ### MVP の手触り確認（任意・目安 2 分）
 - 対象: `mvp/`（`npm run dev` で起動、← / → を押して Oracle に当てられる体験）
