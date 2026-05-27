@@ -17,7 +17,7 @@
 
 | 配布先 | status | メモ |
 |---|---|---|
-| GitHub Pages | 🚧 準備中 | `.github/workflows/deploy.yml` で `app/` をビルドして自動デプロイ。**ユーザが一度 Settings → Pages → Source = "GitHub Actions" を有効化**すると公開される。URL は `https://shugorun.github.io/improvisation/`（Pages 有効化後に確定） |
+| GitHub Pages | ✅ live | 公開中: https://shugorun.github.io/improvisation/ （2026-05-27 デプロイ成功・HTTP 200 確認）。`.github/workflows/deploy.yml` が `app/**` 変更の push で自動再デプロイ |
 | Netlify / Vercel | 📋 任意 | 代替。`app/` を root に、build=`npm run build`、publish=`dist`。`base: './'` 設定済みでサブパス可 |
 
 ## 残ユーザタスク（Claude が実行できない）

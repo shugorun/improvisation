@@ -4,7 +4,7 @@
 
 ## 現在のフェーズ
 
-**P5 完了 → P6 リリース準備（Claude 側はほぼ完了、ユーザ側タスク待ち）。** 作るアプリ = **Oracle**。`app/` 本実装が動作・検証緑（型/lint/unit 25/build）。メタ/OGP/favicon・GitHub Pages デプロイ workflow まで整備済み。
+**P6 リリース完了 — 本番公開済み 🎉** 作るアプリ = **Oracle**。公開 URL: https://shugorun.github.io/improvisation/ （HTTP 200・JS/CSS/og/favicon すべて配信確認）。`app/` 本実装は検証緑（型/lint/unit 25/build）、GitHub Pages へ自動デプロイ。
 
 ## フェーズ進行
 
@@ -14,26 +14,26 @@
 - [x] P3 app-design（スコープ確定・スタック pin）
 - [x] P4 機能仕様（specs S-1〜S-4）
 - [x] P5 本実装（`app/` / 0 から・S-1〜S-4 実装・検証緑）
-- [~] P6 リリース準備（メタ/OGP・デプロイ workflow 整備済。ユーザ側: Pages 有効化・視覚/モバイル確認）
+- [x] P6 リリース（GitHub Pages へ公開済み・URL 上記）
 
-各フェーズの移行ゲートは `03-ROADMAP.md`。
+各フェーズの移行ゲートは `03-ROADMAP.md`。**全フェーズ完了。**
 
-## P6 完了ゲート
+## P6 完了ゲート（達成）
 
-- [x] `07-RELEASE.md` チェックリスト（Claude 実行分は完了。残はユーザタスク）
-- [ ] **ユーザ**: GitHub Pages 有効化（Settings→Pages→Source=GitHub Actions）→ 公開
-- [ ] **ユーザ**: 視覚・モバイル確認（screenshot ツール timeout のため Claude 未取得）
-- [ ] **ユーザ/follow-up**: OGP を絶対 URL の PNG に差し替え（公開 URL 確定後）
+- [x] `07-RELEASE.md` チェックリスト（Claude 実行分完了）
+- [x] GitHub Pages 有効化（ユーザ実施）→ デプロイ workflow 成功・本番 200 確認
+- [ ] **ユーザ**: 視覚・モバイル確認（screenshot ツール timeout のため Claude 未取得）— 公開済みなので実機/ブラウザで最終確認推奨
+- [ ] **follow-up**: OGP を PNG 化（X が SVG 非対応。`og.svg` を元に書き出し）／必要なら簡易プライバシー一文
 
 ## 進行中
 
-- 本実装＋リリース整備まで完了。残りはユーザ側タスク（`07-RELEASE.md`「残ユーザタスク」）のみ。
+- なし。Oracle は P1→P6 完了・本番公開済み。以降は任意の磨き込み（OGP PNG 化・モバイル微調整・製品名/ドメイン等）。
 
-## 次にやること
+## 次にやること（任意）
 
-1. **ユーザ**: GitHub Pages を有効化（一度だけ）→ `git push` で自動デプロイ。
-2. **ユーザ**: `cd app && npm run dev` で視覚・モバイル・共有画像を確認。
-3. follow-up: 公開 URL 確定後に OGP を PNG/絶対 URL 化、必要なら簡易プライバシー一文。
+1. 公開ページを実機/モバイルで触って最終確認。
+2. OGP の PNG 化（X 対応）。
+3. 反応を見て磨き込み（演出・チャレンジモード等は app-design の未確定事項参照）。
 
 ## レビュー待ち
 
