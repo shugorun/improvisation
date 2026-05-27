@@ -4,7 +4,7 @@
 
 ## 現在のフェーズ
 
-**P4 完了 → P5（本実装 / `app/`）。** 作るアプリ = **Oracle**。スタック pin 済み（クライアントのみ React+Vite SPA / ADR 0001）。主要機能 spec（S-1〜S-4）作成済み・受け入れ条件付き。
+**P5 完了（本実装到達）→ P6（リリース準備）は任意。** 作るアプリ = **Oracle**。`app/` に本番実装が動作（preview で golden path 確認: human-like 入力で 68% 的中、Insight・共有・モデル切替・localStorage 動作）。検証は型/lint/unit(25)/build すべて緑。
 
 ## フェーズ進行
 
@@ -13,26 +13,26 @@
 - [x] P2 MVP（`mvp/` で中核体験を実証）
 - [x] P3 app-design（スコープ確定・スタック pin）
 - [x] P4 機能仕様（specs S-1〜S-4）
-- [ ] P5 本実装（`app/` / 0 から）
-- [ ] P6 リリース準備
+- [x] P5 本実装（`app/` / 0 から・S-1〜S-4 実装・検証緑）
+- [ ] P6 リリース準備（任意・未着手）
 
-各フェーズの移行ゲートは `03-ROADMAP.md`。**現フェーズのゲートが全チェックになるまで次へ進まない。**
+各フェーズの移行ゲートは `03-ROADMAP.md`。
 
-## 現フェーズのゲート（P5 → P6）
+## P5→P6 ゲート（達成済み）
 
-- [ ] `app/` で主要フローが動く
-- [ ] 利用可能な検証（型 / lint / unit / build / smoke）が緑
-- [ ] 本実装中の非自明な判断が ADR / progress に記録済
+- [x] `app/` で主要フローが動く（preview eval で確認）
+- [x] 利用可能な検証（型 / lint / unit / build）が緑（25 tests / build OK）
+- [x] 本実装中の非自明な判断が progress に記録済（モデル切替=セッション再スタート、config 分離）
 
 ## 進行中
 
-- P5 本実装に着手。`app/` を Vite+React+TS で初期化し、ESLint/Prettier/Vitest を導入。domain（予測モデル）→ features（ゲーム reducer/hook）→ ui → infra の順に実装。spec S-1〜S-4 の受け入れ条件を満たす。
+- 本実装（ユーザ依頼の到達点「本実装まで」）完了。P6 リリース準備は未着手（任意）。
 
-## 次にやること
+## 次にやること（P6・任意）
 
-1. `app/` 初期化＋ツール導入（ESLint/Prettier/tsc strict/Vitest）。
-2. domain 実装＋unit（予測モデルが 50% 超を満たす）→ features → ui → infra。
-3. 型/lint/unit/build を緑にし、preview で手動確認。
+1. デプロイ先の確定（GitHub Pages / Netlify / Vercel）と `07-RELEASE.md` チェック。
+2. 視覚確認（screenshot ツールが timeout のため未取得）・モバイル幅の手動確認。
+3. 製品名の最終確定（Oracle は仮）、OGP 画像・メタ。
 
 ## レビュー待ち
 

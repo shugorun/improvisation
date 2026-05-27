@@ -34,12 +34,12 @@
 
 | 対象 | 検証 | status | 記録 |
 |---|---|---|---|
-| 予測モデル（domain） | Vitest unit: human-like 系列で 50% 超／backoff 境界／null 返却／スコア境界 | 📋 todo | spec: prediction-models |
-| ゲーム reducer（features） | Vitest unit: 予測リーク無し／hit・streak・履歴・reset | 📋 todo | spec: core-game |
-| 永続化（infra） | Vitest unit: 型ガードで壊れた値を初期化（throw しない） | 📋 todo | spec: share-explain |
-| 静的解析 | tsc strict / ESLint / Prettier | 📋 todo | commit 前に全通過＝緑 |
-| ビルド | `vite build` 成功 | 📋 todo | |
-| UI（手動 / preview） | golden path・モバイル幅・a11y | 📋 todo | |
+| 予測モデル（domain） | Vitest unit: human-like 系列で 50% 超／backoff 境界／null 返却／スコア境界 | ✅ done | predictor.test.ts / score.test.ts（14） |
+| ゲーム reducer（features） | Vitest unit: 予測リーク無し／hit・streak・履歴・reset | ✅ done | game.test.ts（6） |
+| 永続化（infra） | Vitest unit: 型ガードで壊れた値を初期化（throw しない） | ✅ done | storage.test.ts（4）+ shareCard.test.ts（1） |
+| 静的解析 | tsc strict / ESLint / Prettier | ✅ done | commit 前に全通過＝緑 |
+| ビルド | `vite build` 成功 | ✅ done | 46 modules / gzip 65KB |
+| UI（手動 / preview） | golden path・モバイル幅・a11y | 🟡 partial | preview eval で golden path 確認済（68% 的中・Insight・共有・モデル切替・localStorage）。screenshot ツールは timeout、視覚確認とモバイル幅は未取得 |
 
 ## 更新ルール
 

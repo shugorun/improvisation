@@ -15,6 +15,7 @@ export interface AccuracyPoint {
 
 export interface GameState {
   history: Move[]
+  marks: boolean[] // per-round: did the Oracle catch this move? (parallel to history)
   rounds: number
   hits: number
   streak: number // Oracle's current run of correct predictions
@@ -63,6 +64,7 @@ export function createGame(
     const p = predictor.predict()
     return {
       history: [],
+      marks: [],
       rounds: 0,
       hits: 0,
       streak: 0,
@@ -90,6 +92,7 @@ export function createGame(
     const foolStreak = hit ? 0 : state.foolStreak + 1
     state = {
       history: [...state.history, move],
+      marks: [...state.marks, hit],
       rounds,
       hits,
       streak: hit ? state.streak + 1 : 0,

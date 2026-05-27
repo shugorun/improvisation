@@ -12,9 +12,9 @@
 
 | 項目 | 値 |
 |---|---|
-| OS | 未記入（例: Windows 11） |
-| シェル | 未記入（例: PowerShell 5.1 / pwsh / bash / zsh） |
-| パッケージマネージャ | 未記入 |
+| OS | Windows 11 Home (10.0.26200) |
+| シェル | PowerShell（Bash ツールは Git Bash `/usr/bin/bash`。`2>$null` 等の PS 構文は Bash では不可、`2>/dev/null` を使う） |
+| パッケージマネージャ | npm |
 
 ## ツールチェーン / バージョン
 
@@ -22,7 +22,8 @@
 
 | ツール | バージョン | メモ |
 |---|---|---|
-| Node | 未記入 | Claude Code が要求するため存在 |
+| Node | v24.15.0 | ネイティブ TS 型ストリップ可（`node sim.ts` が動く）。`app/` は Vite 6 + React 19 |
+| npm | 11.12.1 | |
 
 ## 既知の制約と回避策
 
@@ -30,7 +31,8 @@
 
 | 症状 | 原因 | 回避策 | 日付 |
 |---|---|---|---|
-| なし | | | |
+| Claude Preview の `preview_screenshot` が `app/`（5174）で 30s timeout（`oracle-mvp` 5173 では成功） | 不明（renderer 側の取得ハング。コンソールにエラーなし、`preview_eval` は即応答） | `preview_eval` で DOM・状態を読んで機能検証する。視覚確認は手動ブラウザで | 2026-05-27 |
+| `vite` と `vitest` 同梱 vite の型が衝突（`test` フィールドや plugins 型不一致） | vitest が別バージョンの vite を nested 解決 | `vite.config.ts`(plugins) と `vitest.config.ts`(test) を分離。後者は tsconfig include 外 | 2026-05-27 |
 
 ## メモ
 
