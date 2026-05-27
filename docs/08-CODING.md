@@ -61,7 +61,13 @@
 
 - commit 前に利用可能な検証（typecheck / lint / format / test）を通す。緑の定義と手順は `02-GUIDELINES.md`「チェックポイント」と `/checkpoint`。
 - 整形（インデント・クォート・import 順・行幅）は formatter に任せ、ここでは規定しない。
-- 導入済みツールの設定ファイル: （未導入。最初の実装で入れたらここにリンクを追記する）
+- 導入済みツールの設定ファイル（本実装 `app/`）:
+  - 型: [`app/tsconfig.json`](../app/tsconfig.json)（`strict` + `noUnusedLocals/Parameters`）。`npm run typecheck`
+  - lint: [`app/eslint.config.js`](../app/eslint.config.js)（ESLint 9 flat + typescript-eslint + react-hooks）。`npm run lint`
+  - format: [`app/.prettierrc.json`](../app/.prettierrc.json)。`npm run format`（check）/ `format:write`
+  - test: [`app/vitest.config.ts`](../app/vitest.config.ts)（Vitest）。`npm test`
+  - 緑の条件 = typecheck + lint + format + test + `npm run build` が全通過。
+  - 注: `vite.config.ts`（plugins）と `vitest.config.ts`（test）は分離（vitest 同梱 vite と型衝突を避けるため）。
 
 ## 関連
 
