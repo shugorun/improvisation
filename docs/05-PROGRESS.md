@@ -4,7 +4,7 @@
 
 ## 現在のフェーズ
 
-**P3 完了 → P4（機能仕様）。** 作るアプリ = **Oracle**（あなたの次の一手を読み当て「人はランダムになれない」を体験させる Web アプリ）。本実装スタックは pin 済み（クライアントのみ React+Vite SPA / ADR 0001）。
+**P4 完了 → P5（本実装 / `app/`）。** 作るアプリ = **Oracle**。スタック pin 済み（クライアントのみ React+Vite SPA / ADR 0001）。主要機能 spec（S-1〜S-4）作成済み・受け入れ条件付き。
 
 ## フェーズ進行
 
@@ -12,26 +12,27 @@
 - [x] P1 アイデア選定（Oracle に決定）
 - [x] P2 MVP（`mvp/` で中核体験を実証）
 - [x] P3 app-design（スコープ確定・スタック pin）
-- [ ] P4 機能仕様
+- [x] P4 機能仕様（specs S-1〜S-4）
 - [ ] P5 本実装（`app/` / 0 から）
 - [ ] P6 リリース準備
 
 各フェーズの移行ゲートは `03-ROADMAP.md`。**現フェーズのゲートが全チェックになるまで次へ進まない。**
 
-## 現フェーズのゲート（P4 → P5）
+## 現フェーズのゲート（P5 → P6）
 
-- [ ] 主要機能ごとに `docs/specs/<feature>/spec.md`
-- [ ] 各 spec に受け入れ条件（`06-VALIDATION.md`）
-- [ ] spec が含む一方通行決定をユーザ確認済（`🔍 reviewed`）
+- [ ] `app/` で主要フローが動く
+- [ ] 利用可能な検証（型 / lint / unit / build / smoke）が緑
+- [ ] 本実装中の非自明な判断が ADR / progress に記録済
 
 ## 進行中
 
-- P4 機能仕様に着手。app-design のセクション（コアゲーム / 統計・チャート / Insight / 共有 / 説明 / 設定）を機能 spec に落とす。
+- P5 本実装に着手。`app/` を Vite+React+TS で初期化し、ESLint/Prettier/Vitest を導入。domain（予測モデル）→ features（ゲーム reducer/hook）→ ui → infra の順に実装。spec S-1〜S-4 の受け入れ条件を満たす。
 
 ## 次にやること
 
-1. `docs/specs/` に主要機能の spec と受け入れ条件を書く。
-2. P5 で `app/` に 0 から本実装（domain→features→ui→infra）。型/lint/unit/build を緑に。
+1. `app/` 初期化＋ツール導入（ESLint/Prettier/tsc strict/Vitest）。
+2. domain 実装＋unit（予測モデルが 50% 超を満たす）→ features → ui → infra。
+3. 型/lint/unit/build を緑にし、preview で手動確認。
 
 ## レビュー待ち
 

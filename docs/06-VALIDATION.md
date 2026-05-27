@@ -34,7 +34,12 @@
 
 | 対象 | 検証 | status | 記録 |
 |---|---|---|---|
-| 未設定 | 未設定 | 📋 todo | |
+| 予測モデル（domain） | Vitest unit: human-like 系列で 50% 超／backoff 境界／null 返却／スコア境界 | 📋 todo | spec: prediction-models |
+| ゲーム reducer（features） | Vitest unit: 予測リーク無し／hit・streak・履歴・reset | 📋 todo | spec: core-game |
+| 永続化（infra） | Vitest unit: 型ガードで壊れた値を初期化（throw しない） | 📋 todo | spec: share-explain |
+| 静的解析 | tsc strict / ESLint / Prettier | 📋 todo | commit 前に全通過＝緑 |
+| ビルド | `vite build` 成功 | 📋 todo | |
+| UI（手動 / preview） | golden path・モバイル幅・a11y | 📋 todo | |
 
 ## 更新ルール
 
