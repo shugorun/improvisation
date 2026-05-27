@@ -24,7 +24,7 @@
 
 1. **GitHub Pages を有効化**: リポジトリ Settings → Pages → Source を "GitHub Actions" に。次の push（または手動 workflow_dispatch）で公開。
 2. **視覚・モバイル確認**: ローカルで `cd app && npm run dev` を開き、PC/スマホ幅で見た目・タップ操作・各 details セクションを確認（Claude は screenshot ツールが timeout で視覚確認できていない。`09-ENVIRONMENT.md` 参照）。
-3. **共有画像の確認**: 「Save result image」で PNG が落ちるか、X/Slack で OGP が出るか。OGP は現状 `./og.svg`（相対・SVG）なので、**公開 URL 確定後に絶対 URL の PNG（1200×630）に差し替え推奨**（X は SVG の og:image を表示しない）。
+3. **共有画像の確認**: 「Save result image」で PNG が落ちるか、X/Slack で OGP が出るか。OGP は `https://shugorun.github.io/improvisation/og.svg`（絶対 URL・SVG）。Slack/Discord/Facebook 等は表示可だが **X は SVG の og:image を表示しない** → PNG（1200×630）コピーへの差し替えが follow-up（`og.svg` を元に書き出し）。
 
 ## 運用メモ
 
