@@ -4,7 +4,7 @@
 
 ## 現在のフェーズ
 
-**P5 完了（本実装到達）→ P6（リリース準備）は任意。** 作るアプリ = **Oracle**。`app/` に本番実装が動作（preview で golden path 確認: human-like 入力で 68% 的中、Insight・共有・モデル切替・localStorage 動作）。検証は型/lint/unit(25)/build すべて緑。
+**P5 完了 → P6 リリース準備（Claude 側はほぼ完了、ユーザ側タスク待ち）。** 作るアプリ = **Oracle**。`app/` 本実装が動作・検証緑（型/lint/unit 25/build）。メタ/OGP/favicon・GitHub Pages デプロイ workflow まで整備済み。
 
 ## フェーズ進行
 
@@ -14,25 +14,26 @@
 - [x] P3 app-design（スコープ確定・スタック pin）
 - [x] P4 機能仕様（specs S-1〜S-4）
 - [x] P5 本実装（`app/` / 0 から・S-1〜S-4 実装・検証緑）
-- [ ] P6 リリース準備（任意・未着手）
+- [~] P6 リリース準備（メタ/OGP・デプロイ workflow 整備済。ユーザ側: Pages 有効化・視覚/モバイル確認）
 
 各フェーズの移行ゲートは `03-ROADMAP.md`。
 
-## P5→P6 ゲート（達成済み）
+## P6 完了ゲート
 
-- [x] `app/` で主要フローが動く（preview eval で確認）
-- [x] 利用可能な検証（型 / lint / unit / build）が緑（25 tests / build OK）
-- [x] 本実装中の非自明な判断が progress に記録済（モデル切替=セッション再スタート、config 分離）
+- [x] `07-RELEASE.md` チェックリスト（Claude 実行分は完了。残はユーザタスク）
+- [ ] **ユーザ**: GitHub Pages 有効化（Settings→Pages→Source=GitHub Actions）→ 公開
+- [ ] **ユーザ**: 視覚・モバイル確認（screenshot ツール timeout のため Claude 未取得）
+- [ ] **ユーザ/follow-up**: OGP を絶対 URL の PNG に差し替え（公開 URL 確定後）
 
 ## 進行中
 
-- 本実装（ユーザ依頼の到達点「本実装まで」）完了。P6 リリース準備は未着手（任意）。
+- 本実装＋リリース整備まで完了。残りはユーザ側タスク（`07-RELEASE.md`「残ユーザタスク」）のみ。
 
-## 次にやること（P6・任意）
+## 次にやること
 
-1. デプロイ先の確定（GitHub Pages / Netlify / Vercel）と `07-RELEASE.md` チェック。
-2. 視覚確認（screenshot ツールが timeout のため未取得）・モバイル幅の手動確認。
-3. 製品名の最終確定（Oracle は仮）、OGP 画像・メタ。
+1. **ユーザ**: GitHub Pages を有効化（一度だけ）→ `git push` で自動デプロイ。
+2. **ユーザ**: `cd app && npm run dev` で視覚・モバイル・共有画像を確認。
+3. follow-up: 公開 URL 確定後に OGP を PNG/絶対 URL 化、必要なら簡易プライバシー一文。
 
 ## レビュー待ち
 

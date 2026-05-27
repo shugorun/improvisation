@@ -1,24 +1,32 @@
 # Release
 
-公開・配布・運用の準備メモ（P6）。
+公開・配布・運用の準備メモ（P6）。アプリ = Oracle（`app/`）。完全クライアントサイド SPA。
 
 ## リリースチェックリスト
 
-- [ ] プロダクト名と説明が確定している（`01-PRODUCT.md`）
-- [ ] P3 app-design / P4 spec が含む一方通行決定が `🔍 reviewed`
-- [ ] 主要フロー（`app/`）の検証が完了している
-- [ ] 既知の重大 issue がない（`docs/issues/_index.md`）
-- [ ] 環境変数と secret の扱いが整理されている
-- [ ] ログ / 監視 / エラー通知方針がある
-- [ ] バックアップ / データ削除方針がある
-- [ ] 利用規約 / プライバシーポリシーが必要なら準備済み
+- [x] プロダクト名と説明が確定している（`01-PRODUCT.md` = Oracle）
+- [x] P3 app-design / P4 spec が含む一方通行決定（spec は「なし・Claude 判定」。スタック pin は ADR 0001、`05-PROGRESS.md` レビュー待ちに事後確認余地を明記）
+- [x] 主要フロー（`app/`）の検証が完了（unit 25 / build 緑、preview eval で golden path 確認）。**視覚確認・モバイル幅は未取得**（screenshot ツール timeout → 下記ユーザタスク）
+- [x] 既知の重大 issue がない（`docs/issues/_index.md` = 0 件）
+- [x] 環境変数と secret の扱い: **なし**（完全クライアント・外部送信なし・API キー不要）
+- [x] ログ / 監視 / エラー通知方針: 初版は**入れない**（個人開発・非スコープ。必要なら後日 lightweight analytics）
+- [x] バックアップ / データ削除方針: サーバ・DB なし。永続化は localStorage（`oracle:v1`）のみで、ユーザがブラウザ側で削除可能
+- [~] 利用規約 / プライバシーポリシー: 入力を外部送信しないため最小。公開時に「データは端末内のみ」の一文を添える程度で足りる（follow-up）
 
 ## 配布先
 
 | 配布先 | status | メモ |
 |---|---|---|
-| 未設定 | 📋 todo | |
+| GitHub Pages | 🚧 準備中 | `.github/workflows/deploy.yml` で `app/` をビルドして自動デプロイ。**ユーザが一度 Settings → Pages → Source = "GitHub Actions" を有効化**すると公開される。URL は `https://shugorun.github.io/improvisation/`（Pages 有効化後に確定） |
+| Netlify / Vercel | 📋 任意 | 代替。`app/` を root に、build=`npm run build`、publish=`dist`。`base: './'` 設定済みでサブパス可 |
+
+## 残ユーザタスク（Claude が実行できない）
+
+1. **GitHub Pages を有効化**: リポジトリ Settings → Pages → Source を "GitHub Actions" に。次の push（または手動 workflow_dispatch）で公開。
+2. **視覚・モバイル確認**: ローカルで `cd app && npm run dev` を開き、PC/スマホ幅で見た目・タップ操作・各 details セクションを確認（Claude は screenshot ツールが timeout で視覚確認できていない。`09-ENVIRONMENT.md` 参照）。
+3. **共有画像の確認**: 「Save result image」で PNG が落ちるか、X/Slack で OGP が出るか。OGP は現状 `./og.svg`（相対・SVG）なので、**公開 URL 確定後に絶対 URL の PNG（1200×630）に差し替え推奨**（X は SVG の og:image を表示しない）。
 
 ## 運用メモ
 
-- 未設定。
+- サーバ運用なし。デプロイは push → Actions のみ。ロールバックは Pages の再デプロイ（前コミットを push）。
+- 入力・スコアは端末内 localStorage のみ。個人情報・secret は扱わない。
