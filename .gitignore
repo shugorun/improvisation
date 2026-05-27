@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+.pnp.*
+
+# Builds
+dist/
+build/
+out/
+.next/
+.expo/
+.turbo/
+coverage/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Claude Code machine-local settings (permissions policy lives in settings.json)
+.claude/settings.local.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

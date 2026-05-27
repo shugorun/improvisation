@@ -1,0 +1,4 @@
+# All text files use LF (repo + working tree), regardless of each user's
+# core.autocrlf. Keeps the repo consistent and avoids CRLF noise in diffs.
+# Binary files are auto-detected and untouched.
+* text=auto eol=lf
